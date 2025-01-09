@@ -1,0 +1,15 @@
+
+<odoo>
+    <record id="action_check_valuation_layer_wizard" model="ir.actions.act_window">
+        <field name="name">Buscar Stock Valuation Layers Sin Asientos</field>
+        <field name="res_model">check.valuation.layer.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_check_valuation_layer"
+              name="Validar Capas de Valoración"
+              parent="stock.menu_stock_root"
+              action="action_check_valuation_layer_wizard"
+              sequence="20"/>
+</odoo>
