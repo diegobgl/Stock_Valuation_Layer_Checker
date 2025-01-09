@@ -11,6 +11,7 @@
     'data': [
         'wizard/check_valuation_layer_wizard_views.xml',
         'views/stock_valuation_layer_menu.xml',
+        'views/stock_valuation_layer_action_views.xml',
     ],
     'installable': True,
     'application': False,
