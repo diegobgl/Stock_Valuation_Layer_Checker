@@ -9,7 +9,7 @@
     'author': 'Tu Nombre',
     'depends': ['stock_account'],
     'data': [
-        'wizards/check_valuation_layer_wizard_views.xml',
+        'wizard/check_valuation_layer_wizard_views.xml',
         'views/stock_valuation_layer_menu.xml',
     ],
     'installable': True,
