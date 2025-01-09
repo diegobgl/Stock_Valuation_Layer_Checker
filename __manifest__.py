@@ -6,7 +6,7 @@
         Este módulo permite identificar registros de Stock Valuation Layer 
         que no tienen un asiento contable asociado.
     """,
-    'author': 'Tu Nombre',
+    'author': 'diego Gajardo',
     'depends': ['stock_account'],
     'data': [
         'wizard/check_valuation_layer_wizard_views.xml',
