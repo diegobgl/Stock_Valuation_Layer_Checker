@@ -12,7 +12,6 @@
                 <field name="unit_cost" sum="Average"/>
                 <field name="value" sum="Total"/>
                 <field name="account_move_id"/>
-                <field name="valuation_id" invisible="1"/> <!-- Campo base de la agrupación -->
             </tree>
         </field>
     </record>
