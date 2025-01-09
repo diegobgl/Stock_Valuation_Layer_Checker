@@ -16,7 +16,15 @@
         </field>
     </record>
 
-    <!-- Menú para acceder a los resultados -->
+    <!-- Acción para abrir el wizard -->
+    <record id="action_check_valuation_layer_wizard" model="ir.actions.act_window">
+        <field name="name">Buscar Capas de Valoración Sin Asientos</field>
+        <field name="res_model">check.valuation.layer.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Menú para acceder al wizard -->
     <menuitem id="menu_check_valuation_layer"
               name="Validar Capas de Valoración"
               parent="stock.menu_stock_root"
