@@ -1,31 +1,26 @@
 <odoo>
-    <!-- Vista Tree para Stock Valuation Layer -->
-    <record id="view_stock_valuation_layer_tree" model="ir.ui.view">
-        <field name="name">stock.valuation.layer.tree</field>
+    <!-- Vista Tree para Stock Valuation Layer agrupada -->
+    <record id="view_stock_valuation_layer_tree_custom" model="ir.ui.view">
+        <field name="name">stock.valuation.layer.tree.grouped</field>
         <field name="model">stock.valuation.layer</field>
-        <field name="inherit_id" ref="stock_account.view_stock_valuation_layer_tree"/>
         <field name="arch" type="xml">
             <tree>
+                <!-- Campo para agrupar los registros -->
                 <field name="create_date"/>
                 <field name="product_id"/>
-                <field name="quantity"/>
-                <field name="unit_cost"/>
-                <field name="value"/>
+                <field name="quantity" sum="Total"/>
+                <field name="unit_cost" sum="Average"/>
+                <field name="value" sum="Total"/>
                 <field name="account_move_id"/>
+                <field name="valuation_id" invisible="1"/> <!-- Campo base de la agrupación -->
             </tree>
         </field>
     </record>
 
-    <!-- Asociar la acción masiva con la vista -->
-    <record id="action_server_create_accounting_entries" model="ir.actions.server">
-        <field name="name">Crear Asientos Contables</field>
-        <field name="model_id" ref="stock_account.model_stock_valuation_layer"/>
-        <field name="binding_model_id" ref="stock_account.model_stock_valuation_layer"/>
-        <field name="binding_type">action</field>
-        <field name="state">code</field>
-        <field name="code">
-            for layer in records:
-                layer.action_create_accounting_entries()
-        </field>
-    </record>
+    <!-- Menú para acceder a los resultados -->
+    <menuitem id="menu_check_valuation_layer"
+              name="Validar Capas de Valoración"
+              parent="stock.menu_stock_root"
+              action="action_check_valuation_layer_wizard"
+              sequence="20"/>
 </odoo>

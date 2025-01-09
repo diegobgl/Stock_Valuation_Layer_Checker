@@ -8,24 +8,28 @@ class CheckValuationLayerWizard(models.TransientModel):
     end_date = fields.Date(string='Fecha Fin', required=True)
 
     def search_valuation_layers_without_accounting(self):
-        """Buscar Stock Valuation Layers sin asientos contables y con ubicaciones de tipo producción."""
+        """Buscar Stock Valuation Layers sin asientos contables agrupados por valorización."""
         domain = [
             ('account_move_id', '=', False),  # Sin asiento contable
             ('create_date', '>=', self.start_date),  # Fecha inicio
             ('create_date', '<=', self.end_date),    # Fecha fin
-            '|',  # Condición OR para considerar ambas ubicaciones (origen/destino)
-            ('stock_move_id.location_id.usage', '=', 'production'),  # Ubicación origen de tipo producción
-            ('stock_move_id.location_dest_id.usage', '=', 'production')  # Ubicación destino de tipo producción
         ]
 
         valuation_layers = self.env['stock.valuation.layer'].search(domain)
 
-        # Retornar una acción para mostrar los resultados
+        # Crear un conjunto único basado en un campo agrupador
+        grouped_layers = {}
+        for layer in valuation_layers:
+            key = layer.id  # Reemplazar con el campo adecuado, como `valuation_id`
+            if key not in grouped_layers:
+                grouped_layers[key] = layer
+
+        # Retornar una acción para mostrar los resultados agrupados
         return {
             'type': 'ir.actions.act_window',
             'name': 'Stock Valuation Layers Sin Asientos',
             'res_model': 'stock.valuation.layer',
             'view_mode': 'tree,form',
-            'domain': [('id', 'in', valuation_layers.ids)],
+            'domain': [('id', 'in', list(grouped_layers.keys()))],
             'context': {'create': False},  # Evitar creación de nuevos registros desde esta vista
         }
