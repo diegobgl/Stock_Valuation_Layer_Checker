@@ -1,6 +1,6 @@
 <odoo>
     <!-- Acción masiva para crear los asientos contables -->
-    <record id="action_create_accounting_entries" model="ir.actions.server">
+    <!--record id="action_create_accounting_entries" model="ir.actions.server">
         <field name="name">Crear Asientos Contables</field>
         <field name="model_id" ref="stock_account.model_stock_valuation_layer"/>
         <field name="state">code</field>
@@ -8,7 +8,7 @@
             for layer in records:
                 layer.action_create_accounting_entries()
         </field>
-    </record>
+    </!record-->
 
     <!-- Definir la acción masiva para la vista tree -->
     <record id="action_server_create_accounting_entries" model="ir.actions.server">

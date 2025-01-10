@@ -8,4 +8,4 @@ class StockValuationLayer(models.Model):
         Crear asientos contables para las capas seleccionadas.
         Este método llama a `_validate_accounting_entries` para generar las entradas.
         """
-        self._validate_accounting_entries()
+        self._validate_accounting_entries()  # Este es el método correcto
